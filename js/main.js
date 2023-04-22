@@ -62,7 +62,7 @@ class LeftPannel{
 
             this.widgetTitle = document.createElement("p");
             this.widgetTitle.classList = "collection__title";
-            this.widgetTitle.innerText = "hoi";
+            this.widgetTitle.innerText = "Title";
 
             this.widgetImg = document.createElement("img");
             this.widgetImg.classList = "collection__image";
@@ -83,6 +83,7 @@ class LeftPannel{
 
 class RightPanel{
     htmlElement;
+    digitalPanel
 
     constructor(){
         this.htmlElement = document.getElementsByTagName("body")[0];
@@ -94,6 +95,8 @@ class RightPanel{
         this.rightSection.classList = "collection__section collection__section--right";
 
         this.render();
+
+        this.digitalPanel = new DigitalPanel();
     }
 
     render(){
@@ -102,6 +105,96 @@ class RightPanel{
     }
 }
 
-const header = new Header();
-const leftSection = new LeftPannel();
-const rightSection = new RightPanel();
+class DigitalPanel{
+    rightSection;
+
+    constructor(){
+        this.rightSection = document.getElementsByTagName("section")[2];
+
+        this.modal = document.createElement("article");
+        this.modal.classList = "modal";
+
+        this.modalFigure = document.createElement("figure");
+        this.modalFigure.classList = "modal__figure";
+
+        this.modalDate = document.createElement("p");
+        this.modalDate.classList = "modal__date";
+        this.modalDate.innerText = "28-06-2023";
+
+        this.modalTitle = document.createElement("p");
+        this.modalTitle.classList = "modal__title";
+        this.modalTitle.innerText = "Title";
+
+        this.modalImg = document.createElement("img");
+        this.modalImg.classList = "modal__img";
+
+        this.modalLongDescription = document.createElement("p");
+        this.modalLongDescription.classList = "modal__longDescription";
+        this.modalLongDescription.innerText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas error nihil fugit ad, nulla adipisci assumenda totam maiores placeat non perferendis magnam quasi laboriosam? Ipsa quidem perspiciatis voluptatem voluptate"
+
+        this.modalButtonWrapper = document.createElement("div");
+        this.modalButtonWrapper.classList = "modal__buttonWrapper";
+
+        this.modalButtonAudio = document.createElement("button");
+        this.modalButtonAudio.classList = "modal__audioObject";
+        this.modalButtonAudio.innerText = "Audio Object";
+
+        this.modalSource = document.createElement("a");
+        this.modalSource.classList = "modal__sourceLink";
+        this.modalSource.innerText = "Source >";
+
+        this.render();
+    }
+
+    render(){
+        this.rightSection.appendChild(this.modal);
+        this.modal.appendChild(this.modalFigure);
+        this.modalFigure.appendChild(this.modalDate);
+        this.modalFigure.appendChild(this.modalTitle);
+        this.modalFigure.appendChild(this.modalImg);
+
+        this.modal.appendChild(this.modalLongDescription);
+
+        this.modal.appendChild(this.modalButtonWrapper);
+        this.modalButtonWrapper.appendChild(this.modalButtonAudio);
+        this.modalButtonWrapper.appendChild(this.modalSource);
+    }
+}
+
+class Footer{
+    htmlElement;
+
+    constructor(){
+        this.htmlElement = document.getElementsByTagName("body")[0];
+
+        this.footer = document.createElement("footer");
+        this.footer.classList = "footer";
+
+        this.footerMadeBy = document.createElement("h2");
+        this.footerMadeBy.classList = "footer__gemaakt";
+        this.footerMadeBy.innerText = "Gemaakt door: Jacob Wassall-Jamieson SD2D";
+
+        this.render();
+    }
+
+    render(){
+        this.htmlElement.appendChild(this.footer)
+        this.footer.appendChild(this.footerMadeBy);
+    }
+}
+
+class App{
+    header;
+    leftPanel;
+    rightPanel;
+    footer;
+
+    constructor(){
+        this.header = new Header();
+        this.leftPanel = new LeftPannel();
+        this.rightPanel = new RightPanel();
+        this.footer = new Footer();
+    }
+}
+
+const app = new App();
