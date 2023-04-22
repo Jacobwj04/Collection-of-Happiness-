@@ -1,0 +1,54 @@
+@media screen and (max-width: 87.5rem) {
+    .collection{
+        min-height: 130rem;
+        flex-direction: column-reverse;
+
+        &__section{
+
+            &--left{
+                width: 100%;
+            }
+
+            &--right{
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+
+        &__listItem{
+            width: 40%;
+            aspect-ratio: 1/1;
+        }
+    }
+}
+
+@media screen and (max-width: 50rem) {
+
+    .collection{
+
+        &__section{
+
+            &--left{
+                width: 100%;
+                height: 50rem;
+            }
+
+            &--right{
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+
+        &__listItem{
+            width: 44%;
+            height: 20rem;
+        }
+
+        &__list{
+            gap: 3rem;
+            padding: 0rem;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

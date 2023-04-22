@@ -1,0 +1,53 @@
+.collection{
+    height: 65rem;
+    width: 100vw;
+    display: flex;
+    margin-top: 8rem;
+    justify-content: space-between;
+
+    &__section{
+        height: 100%;
+
+        &--left{
+            width: 50%;
+            height: 65rem;
+        }
+
+        &--right{
+            height: 65rem;
+            width: 40%;
+            padding: 4rem;
+        }
+    }
+
+    &__list{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        padding: 3rem;
+        list-style: none;
+    }
+
+    &__listItem{
+        width:30rem;
+        aspect-ratio: 1/1;
+        position: relative;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+    }
+
+    &__date{
+        position: absolute;
+        top: 4%;
+        right: 4%;
+        font-size: 2.5rem;
+    }
+
+    &__title{
+        position: absolute;
+        bottom: 4%;
+        left: 4%;
+        font-size: 2.5rem; 
+    }
+}

@@ -1,0 +1,69 @@
+.modal{
+    height: 65rem;
+    width: 100%;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+
+    &__figure{
+        height: calc(100% / 3);
+        position: relative;
+    }
+
+    &__date{
+        position: absolute;
+        top: 4%;
+        right: 4%;
+        font-size: 2.5rem;
+    }
+
+    &__title{
+        position: absolute;
+        bottom: 4%;
+        left: 4%;
+        font-size: 2.5rem; 
+    }
+
+    &__longDescription{
+        height: 50%;
+        width: 100%;
+        padding: 2rem;
+        font-size: 2rem;
+    }
+
+    &__buttonWrapper{
+        height: 18%;
+        align-items:center;
+        display: flex;
+        padding: 1rem;
+        justify-content: space-between;
+    }
+
+    &__audioObject{
+        border: none;
+        width: 20rem;
+        height: 3rem;
+        background: #159895;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+        transition: 0.4s all;
+        color: black;
+
+        &:hover{
+            background: #569DAA;
+            color: #87CBB9;
+        }
+    }
+
+    &__sourceLink{
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        width: 10rem;
+        height: 3rem;
+        background: #B9EDDD;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+        color: #1A5F7A;
+    }
+}
