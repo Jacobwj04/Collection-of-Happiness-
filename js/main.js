@@ -81,5 +81,27 @@ class LeftPannel{
     }
 }
 
+class RightPanel{
+    htmlElement;
+
+    constructor(){
+        this.htmlElement = document.getElementsByTagName("body")[0];
+
+        this.mainElement = document.getElementsByTagName("main")[0];
+        this.mainElement.classList = "collection";
+
+        this.rightSection = document.createElement("section");
+        this.rightSection.classList = "collection__section collection__section--right";
+
+        this.render();
+    }
+
+    render(){
+        this.htmlElement.appendChild(this.mainElement);
+        this.mainElement.appendChild(this.rightSection);
+    }
+}
+
 const header = new Header();
 const leftSection = new LeftPannel();
+const rightSection = new RightPanel();
