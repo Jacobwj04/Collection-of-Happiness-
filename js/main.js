@@ -32,4 +32,54 @@ class Header{
     }
 }
 
+class LeftPannel{
+    htmlElement;
+
+    constructor(){
+        this.htmlElement = document.getElementsByTagName("body")[0];
+
+        this.mainElement = document.createElement("main");
+        this.mainElement.classList = "collection";
+
+        this.leftSection = document.createElement("section");
+        this.leftSection.classList = "collection__section collection__section--left";
+
+        this.leftSectionList = document.createElement("ul");
+        this.leftSectionList.classList = "collection__list";
+
+        this.createWidgets();
+        this.render();
+    }
+
+    createWidgets(){
+        for(let i = 0; i < 4; i++){
+            this.leftSectionListItem = document.createElement("li");
+            this.leftSectionListItem.classList = "collection__listItem";
+
+            this.widgetDate = document.createElement("p");
+            this.widgetDate.classList = "collection__date";
+            this.widgetDate.innerText = "28-06-2023";
+
+            this.widgetTitle = document.createElement("p");
+            this.widgetTitle.classList = "collection__title";
+            this.widgetTitle.innerText = "hoi";
+
+            this.widgetImg = document.createElement("img");
+            this.widgetImg.classList = "collection__image";
+
+            this.leftSectionList.appendChild(this.leftSectionListItem);
+            this.leftSectionListItem.appendChild(this.widgetDate);
+            this.leftSectionListItem.appendChild(this.widgetTitle);
+            this.leftSectionListItem.appendChild(this.widgetImg);
+        }
+    }
+
+    render(){
+        this.htmlElement.appendChild(this.mainElement);
+        this.mainElement.appendChild(this.leftSection);
+        this.leftSection.appendChild(this.leftSectionList);
+    }
+}
+
 const header = new Header();
+const leftSection = new LeftPannel();
