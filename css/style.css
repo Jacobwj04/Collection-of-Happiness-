@@ -1,0 +1,210 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 100%;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body {
+  max-height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  width: 100%;
+  height: 13rem;
+  display: flex;
+  justify-content: center;
+}
+.header__logoWrapper {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+.header__logo {
+  width: 9rem;
+  height: 9rem;
+  border: 0.4rem solid #57C5B6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.header__logoIcon {
+  font-size: 7rem;
+  color: #159895;
+}
+.header__logoText {
+  font-size: 4rem;
+}
+
+.collection {
+  height: 65rem;
+  width: 100vw;
+  display: flex;
+  margin-top: 8rem;
+  justify-content: space-between;
+}
+.collection__section {
+  height: 100%;
+}
+.collection__section--left {
+  width: 50%;
+  height: 65rem;
+}
+.collection__section--right {
+  height: 65rem;
+  width: 40%;
+  padding: 4rem;
+}
+.collection__list {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 3rem;
+  list-style: none;
+}
+.collection__listItem {
+  width: 30rem;
+  aspect-ratio: 1/1;
+  position: relative;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+}
+.collection__date {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  font-size: 2.5rem;
+}
+.collection__title {
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  font-size: 2.5rem;
+}
+
+.modal {
+  height: 65rem;
+  width: 100%;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+}
+.modal__figure {
+  height: 33.3333333333%;
+  position: relative;
+}
+.modal__date {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  font-size: 2.5rem;
+}
+.modal__title {
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  font-size: 2.5rem;
+}
+.modal__longDescription {
+  height: 50%;
+  width: 100%;
+  padding: 2rem;
+  font-size: 2rem;
+}
+.modal__buttonWrapper {
+  height: 18%;
+  align-items: center;
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.modal__audioObject {
+  border: none;
+  width: 20rem;
+  height: 3rem;
+  background: #159895;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  transition: 0.4s all;
+  color: black;
+}
+.modal__audioObject:hover {
+  background: #569DAA;
+  color: #87CBB9;
+}
+.modal__sourceLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 10rem;
+  height: 3rem;
+  background: #B9EDDD;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  color: #1A5F7A;
+}
+
+.footer {
+  height: calc(100vh - 13rem - 65rem - 8rem);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__gemaakt {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+@media screen and (max-width: 87.5rem) {
+  .collection {
+    min-height: 130rem;
+    flex-direction: column-reverse;
+  }
+  .collection__section--left {
+    width: 100%;
+  }
+  .collection__section--right {
+    width: 100%;
+    padding: 1rem;
+  }
+  .collection__listItem {
+    width: 40%;
+    aspect-ratio: 1/1;
+  }
+}
+@media screen and (max-width: 50rem) {
+  .collection__section--left {
+    width: 100%;
+    height: 50rem;
+  }
+  .collection__section--right {
+    width: 100%;
+    padding: 1rem;
+  }
+  .collection__listItem {
+    width: 44%;
+    height: 20rem;
+  }
+  .collection__list {
+    gap: 3rem;
+    padding: 0rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
