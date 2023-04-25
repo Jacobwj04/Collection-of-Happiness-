@@ -120,6 +120,7 @@ class LeftPannel{
             this.widgetImg = document.createElement("img");
             this.widgetImg.classList = "collection__image";
             this.widgetImg.src = data[randomNumber]["image"]["src"];
+            this.widgetImg.alt = data[randomNumber]["image"]["alt"];
 
             this.leftSectionList.appendChild(this.leftSectionListItem);
             this.leftSectionListItem.appendChild(this.widgetDate);
@@ -205,6 +206,7 @@ class DigitalPanel{
         this.modalDate.innerText = episode["date (dd-mm-yyyy)"];
         this.modalTitle.innerText = episode["title"];
         this.modalImg.src = episode["image"]["src"];
+        this.modalImg.alt = episode["image"]["alt"];
         this.modalLongDescription.innerText = episode["summary"];
         this.modalSource.href = episode["url"];
         this.modalButtonAudio.onclick = () =>{
