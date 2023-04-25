@@ -12,14 +12,22 @@
         position: absolute;
         top: 4%;
         right: 4%;
-        font-size: 2.5rem;
+        font-size: 2rem;
+        font-weight: 300;
     }
 
     &__title{
         position: absolute;
         bottom: 4%;
         left: 4%;
-        font-size: 2.5rem; 
+        font-size: 2rem;
+        font-weight: 400; 
+    }
+
+    &__img{
+        width: 100%;
+        height: 100%;
+        object-fit:fill;
     }
 
     &__longDescription{

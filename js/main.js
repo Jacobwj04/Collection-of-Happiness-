@@ -1,3 +1,15 @@
+class GetData{
+    data = null;
+    
+    async getData(){
+        await fetch("../data/data.json").then(responce => {
+            return responce.json();
+        }).then(newData => {
+            this.data = newData.episodes;
+        });
+    }
+}
+
 class Header{
     htmlElement;
 
@@ -32,14 +44,46 @@ class Header{
     }
 }
 
+class Main{
+    renderMain;
+    mainSection;
+    leftPanel;
+    rightPanel;
+
+    constructor(renderMain){
+        this.renderMain = document.getElementsByTagName(renderMain)[0];
+
+        this.mainSection = document.createElement("main");
+        this.mainSection.classList = "collection";
+
+        this.leftPanel = new LeftPannel(this.mainSection, this);
+        this.rightPanel = new RightPanel(this.mainSection);
+
+        this.render();
+    }
+
+    render(){
+        this.renderMain.appendChild(this.mainSection);
+        this.leftPanel.render();
+        this.rightPanel.render();
+    }
+
+    EpisodeSnipIt(data){
+        this.leftPanel.createWidgets(data);
+    }
+
+    callFromLeftSection(episode){
+        this.rightPanel.digitalPanel.makeDigitalPanel(episode);
+    }
+}
+
 class LeftPannel{
     htmlElement;
 
-    constructor(){
-        this.htmlElement = document.getElementsByTagName("body")[0];
+    constructor(mainSection, mainClass){
+        this.mainSection = mainSection;
 
-        this.mainElement = document.createElement("main");
-        this.mainElement.classList = "collection";
+        this.mainClass = mainClass;
 
         this.leftSection = document.createElement("section");
         this.leftSection.classList = "collection__section collection__section--left";
@@ -47,69 +91,81 @@ class LeftPannel{
         this.leftSectionList = document.createElement("ul");
         this.leftSectionList.classList = "collection__list";
 
-        this.createWidgets();
-        this.render();
     }
 
-    createWidgets(){
+    createWidgets(data){
+        let filter = [];
+        for(let i = 0; i < data.length; i++){
+            filter.push(i);
+        }
+
         for(let i = 0; i < 4; i++){
+            let randomIndex = this.randomNumberGenarator(filter);
+            let randomNumber = filter[randomIndex];
+            filter.splice(randomIndex, 1);
             this.leftSectionListItem = document.createElement("li");
             this.leftSectionListItem.classList = "collection__listItem";
+            this.leftSectionListItem.onclick = () =>{
+                this.mainClass.callFromLeftSection(data[randomNumber]);
+            }
 
             this.widgetDate = document.createElement("p");
             this.widgetDate.classList = "collection__date";
-            this.widgetDate.innerText = "28-06-2023";
+            this.widgetDate.innerText = data[randomNumber]["date (dd-mm-yyyy)"];
 
             this.widgetTitle = document.createElement("p");
             this.widgetTitle.classList = "collection__title";
-            this.widgetTitle.innerText = "Title";
+            this.widgetTitle.innerText = data[randomNumber]["title"];
 
             this.widgetImg = document.createElement("img");
             this.widgetImg.classList = "collection__image";
+            this.widgetImg.src = data[randomNumber]["image"]["src"];
 
             this.leftSectionList.appendChild(this.leftSectionListItem);
             this.leftSectionListItem.appendChild(this.widgetDate);
             this.leftSectionListItem.appendChild(this.widgetTitle);
             this.leftSectionListItem.appendChild(this.widgetImg);
+
+            if(i === 0){
+                this.mainClass.rightPanel.digitalPanel.makeDigitalPanel(data[randomNumber]);
+            }
         }
     }
 
     render(){
-        this.htmlElement.appendChild(this.mainElement);
-        this.mainElement.appendChild(this.leftSection);
+        this.mainSection.appendChild(this.leftSection);
         this.leftSection.appendChild(this.leftSectionList);
+    }
+
+    randomNumberGenarator(data){
+        let index = Math.floor(Math.random() * data.length)
+        return index;
     }
 }
 
 class RightPanel{
     htmlElement;
-    digitalPanel
+    digitalPanel;
 
-    constructor(){
-        this.htmlElement = document.getElementsByTagName("body")[0];
-
-        this.mainElement = document.getElementsByTagName("main")[0];
-        this.mainElement.classList = "collection";
+    constructor(mainSection){
+        this.mainSection = mainSection;
 
         this.rightSection = document.createElement("section");
         this.rightSection.classList = "collection__section collection__section--right";
 
-        this.render();
-
-        this.digitalPanel = new DigitalPanel();
+        this.digitalPanel = new DigitalPanel(this.rightSection);
     }
 
     render(){
-        this.htmlElement.appendChild(this.mainElement);
-        this.mainElement.appendChild(this.rightSection);
+        this.mainSection.appendChild(this.rightSection);
     }
 }
 
 class DigitalPanel{
     rightSection;
 
-    constructor(){
-        this.rightSection = document.getElementsByTagName("section")[2];
+    constructor(rightSection){
+        this.rightSection = rightSection;
 
         this.modal = document.createElement("article");
         this.modal.classList = "modal";
@@ -119,18 +175,17 @@ class DigitalPanel{
 
         this.modalDate = document.createElement("p");
         this.modalDate.classList = "modal__date";
-        this.modalDate.innerText = "28-06-2023";
+        
 
         this.modalTitle = document.createElement("p");
         this.modalTitle.classList = "modal__title";
-        this.modalTitle.innerText = "Title";
+        
 
         this.modalImg = document.createElement("img");
         this.modalImg.classList = "modal__img";
 
         this.modalLongDescription = document.createElement("p");
         this.modalLongDescription.classList = "modal__longDescription";
-        this.modalLongDescription.innerText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse voluptas error nihil fugit ad, nulla adipisci assumenda totam maiores placeat non perferendis magnam quasi laboriosam? Ipsa quidem perspiciatis voluptatem voluptate"
 
         this.modalButtonWrapper = document.createElement("div");
         this.modalButtonWrapper.classList = "modal__buttonWrapper";
@@ -145,6 +200,17 @@ class DigitalPanel{
 
         this.render();
     }
+
+    makeDigitalPanel(episode){
+        this.modalDate.innerText = episode["date (dd-mm-yyyy)"];
+        this.modalTitle.innerText = episode["title"];
+        this.modalImg.src = episode["image"]["src"];
+        this.modalLongDescription.innerText = episode["summary"];
+        this.modalSource.href = episode["url"];
+        this.modalButtonAudio.onclick = () =>{
+            window.location = episode["audio"];
+        }
+    } 
 
     render(){
         this.rightSection.appendChild(this.modal);
@@ -185,14 +251,20 @@ class Footer{
 
 class App{
     header;
-    leftPanel;
-    rightPanel;
+    main;
+    getData;
     footer;
 
     constructor(){
         this.header = new Header();
-        this.leftPanel = new LeftPannel();
-        this.rightPanel = new RightPanel();
+        this.main = new Main("body");
+        this.getData = new GetData();
+        this.getData.getData();
+        this.getData.getData().then(
+            () => {
+                this.main.EpisodeSnipIt(this.getData.data);
+            }
+        );
         this.footer = new Footer();
     }
 }
