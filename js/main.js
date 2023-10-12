@@ -1,12 +1,20 @@
-class GetData{
-    data = null;
-    
-    async getData(){
-        await fetch("../data/data.json").then(responce => {
-            return responce.json();
-        }).then(newData => {
-            this.data = newData.episodes;
-        });
+class Api {
+    data;
+    url;
+
+    constructor(url) {
+        this.url = url;
+    }
+
+    async getData() {
+        await fetch(this.url)
+            .then((response) => {
+                return response.json();
+            }).then((data) => {
+                this.data = data.episodes;
+                console.log(this.data)
+            })
+        return this.data;
     }
 }
 
@@ -260,13 +268,10 @@ class App{
     constructor(){
         this.header = new Header();
         this.main = new Main("body");
-        this.getData = new GetData();
-        this.getData.getData();
-        this.getData.getData().then(
-            () => {
-                this.main.EpisodeSnipIt(this.getData.data);
-            }
-        );
+        this.api = new Api("data/data.json");
+        this.api.getData().then(() => {
+            this.main.EpisodeSnipIt(this.api.data);
+        });
         this.footer = new Footer();
     }
 }
